@@ -17,6 +17,14 @@ jobs:
             token: ${{ secrets.WORKFLOW_TOKEN }}
         - name: Commit changes
           run: |
+            cp tmp/KJ.html docs/agent/KJ.html
+            cp tmp/NT.html docs/agent/NT.html
+            cp tmp/HK.html docs/agent/HK.html
+            cp tmp/MF.html docs/agent/MF.html
+            cp tmp/SY.html docs/agent/SY.html
+            cp tmp/TT.html docs/agent/TT.html
+            cp tmp/TY.html docs/agent/TY.html
+            cp tmp/YS.html docs/agent/YS.html
             git config --global user.email "example.com"
             git config --global user.name "GitHub Actions test"
             git diff --quiet && git diff --staged --quiet || (git add . && git commit -m "Automated fixes by GitHub Actions" && git pull --rebase && git push origin HEAD:${{ github.head_ref }})
