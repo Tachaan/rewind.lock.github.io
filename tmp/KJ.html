@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dear KJ</title>
+    <style>
+        body {
+            background-color: black;
+            color: #00FF00;
+            font-family: monospace;
+            padding: 20px;
+            white-space: pre-wrap;
+        }
+        .typing {
+            font-size: 1.2em;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div id="hacker-text" class="typing"></div>
+
+    <script>
+        const text = `.....まだ早いよ(^ ^) by S.T`;
+
+        let index = 0;
+        const typingSpeed = 100; // タイピング速度（ミリ秒）
+
+        // タイピングアニメーション
+        async function typeText() {
+            // タイピングアニメーション
+            if (index < text.length) {
+                document.getElementById("hacker-text").innerHTML += text[index];
+                index++;
+                setTimeout(typeText, typingSpeed);
+            }
+        }
+
+        // ページ読み込み時にテキスト表示を開始
+        window.onload = typeText;
+    </script>
+</body>
+</html>
