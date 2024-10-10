@@ -16,4 +16,5 @@ jobs:
             fetch-depth: 0 # これが必要
         - name: Commit changes and merge(リリースブランチで行った変更をdevelop, mainへマージ)
           run: |
-            git merge develop
+            git merge origin/develop
+            git push
