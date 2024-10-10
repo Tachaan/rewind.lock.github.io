@@ -25,6 +25,7 @@ jobs:
             cp tmp/TT.html docs/agent/TT.html
             cp tmp/TY.html docs/agent/TY.html
             cp tmp/YS.html docs/agent/YS.html
+            git add .
             git config --global user.email "example.com"
             git config --global user.name "GitHub Actions test"
             git diff --quiet && git diff --staged --quiet || (git add . && git commit -m "Automated fixes by GitHub Actions" && git pull --rebase && git push origin HEAD:${{ github.head_ref }})
