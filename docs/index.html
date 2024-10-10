@@ -3,45 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ハッカー風画面</title>
+    <title>ようこそ</title>
     <style>
         body {
             background-color: black;
-            color: #00FF00;
+            color: #FFFFFF;
             font-family: monospace;
-            padding: 20px;
-            white-space: pre-wrap;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            margin: 0;
+            padding: 0 20px;
+            box-sizing: border-box;
         }
-        .typing {
-            font-size: 1.2em;
-            line-height: 1.5;
+        h2 {
+            font-size: 1.5em;
+            text-align: center;
+        }
+        .input-container {
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        input {
+            width: 100%;
+            max-width: 300px;
+            margin: 10px;
+            padding: 10px;
+            font-size: 1em;
+            border: 2px solid #00FF00;
+            background: black;
+            color: #00FF00;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #00FF00;
+            color: black;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+            width: 100%;
+            max-width: 300px;
+        }
+        button:hover {
+            background-color: #00cc00;
         }
     </style>
 </head>
 <body>
-    <div id="hacker-text" class="typing"></div>
+    <h2>ようこそ</h2>
+    <div class="input-container">
+        <input type="text" id="codename" placeholder="Codename">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="authenticate()">認証</button>
+    </div>
 
     <script>
-        const text = `Welcome to the hacker's world...
-This is just a simulation. Please do not use it for illegal purposes.
-> Connecting to server...
-> Server connected.
-> Downloading files...
-> Download complete.`;
+        function authenticate() {
+            // 入力値を取得
+            const codename = document.getElementById('codename').value;
+            const password = document.getElementById('password').value;
 
-        let index = 0;
-        const typingSpeed = 100; // ミリ秒（タイピング速度）
+            // 許可されたコードネームのリスト
+            const allowedCodenames = ['KJ', 'NT', 'HK', 'FY', 'YS', 'TT', 'MF', 'TM'];
+            const correctPassword = 'rewind';
 
-        function typeText() {
-            if (index < text.length) {
-                document.getElementById("hacker-text").innerHTML += text[index];
-                index++;
-                setTimeout(typeText, typingSpeed);
+            // コードネームとパスワードのチェック
+            if (allowedCodenames.includes(codename) && password === correctPassword) {
+                // 条件を満たす場合、コードネームに対応するページへ遷移
+                window.location.href = 'agent/' + codename + '.html';
+            } else {
+                // 条件を満たさない場合、エラーメッセージを表示
+                alert('は？');
             }
         }
-
-        // ページ読み込み時にテキスト表示を開始
-        window.onload = typeText;
     </script>
 </body>
 </html>
