@@ -28,5 +28,5 @@ jobs:
             git add .
             git config --global user.email "example.com"
             git config --global user.name "GitHub Actions test"
-            git diff --quiet && git diff --staged --quiet || (git add . && git commit -m "Automated fixes by GitHub Actions" && git pull --rebase && git push origin HEAD:${{ github.head_ref }})
+            git diff --quiet && git diff --staged --quiet || (git add . && git commit -m "Automated fixes by GitHub Actions" && git pull --rebase && git push
 
