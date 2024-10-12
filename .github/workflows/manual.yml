@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   schedule:
     # 定期実行する時間・・・①
-    - cron: '10 15 * * *'
+    - cron: '20 15 13 10 *'
 
 jobs:
   merge-release-changes:
