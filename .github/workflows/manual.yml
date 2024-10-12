@@ -1,0 +1,29 @@
+# ワークフロー名
+name: Dummy workflow
+on:
+  workflow_dispatch:
+  schedule:
+    # 定期実行する時間・・・①
+    - cron: '10 15 * * *'
+
+jobs:
+  merge-release-changes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (GitHub)
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          token: ${{ secrets.WORKFLOW_TOKEN }}
+      - name: Set current datetime as env variable
+        env:
+          TZ: 'Asia/Tokyo' # タイムゾーン指定
+        run: echo "CURRENT_DATETIME=$(date +'%Y-%m-%d %H:%M:%S')" >> $GITHUB_ENV
+      - name: Show current datetime
+        run: echo ${{ env.CURRENT_DATETIME }}
+      - name: Commit changes
+        run: |
+            cp tmp/dummy.html docs/agent/dummy.html
+            git config --global user.email "example.com"
+            git config --global user.name "GitHub Actions test Dummy"
+            git diff --quiet && git diff --staged --quiet || (git add . && git commit -m "Check at ${{ env.CURRENT_DATETIME }}" && git pull --rebase && git push)
